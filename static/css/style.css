@@ -1,0 +1,95 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: #111;
+  font-family: sans-serif;
+}
+
+.chess {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+#status {
+  color: #eee;
+  text-align: center;
+  font-size: 16px;
+  min-height: 20px;
+}
+
+#chessboard {
+  width: min(95vw, 85vh);
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+  overflow: hidden;
+  border: 3px solid #333;
+}
+
+.square {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+  min-height: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.square:nth-child(16n + 1),
+.square:nth-child(16n + 3),
+.square:nth-child(16n + 5),
+.square:nth-child(16n + 7),
+.square:nth-child(16n + 10),
+.square:nth-child(16n + 12),
+.square:nth-child(16n + 14),
+.square:nth-child(16n + 16) {
+  background: #779556;
+}
+
+.square:nth-child(16n + 2),
+.square:nth-child(16n + 4),
+.square:nth-child(16n + 6),
+.square:nth-child(16n + 8),
+.square:nth-child(16n + 9),
+.square:nth-child(16n + 11),
+.square:nth-child(16n + 13),
+.square:nth-child(16n + 15) {
+  background: #ebecd0;
+}
+
+.piece {
+  font-size: clamp(20px, 7vw, 58px);
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  z-index: 1;
+}
+
+.square.selected {
+  box-shadow: inset 0 0 0 4px #f6d743;
+}
+
+.square.legal-move::after {
+  content: "";
+  position: absolute;
+  width: 24%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #2228;
+  pointer-events: none;
+}
